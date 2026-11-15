@@ -6,3 +6,4 @@ srist-*.json
 
 # Drive credentials (service-account key, OAuth client, refresh token) — never commit
 credentials/
+srist_nov_v1/
