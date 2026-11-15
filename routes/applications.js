@@ -20,15 +20,7 @@ const refOf = (doc) => String(doc._id).slice(-6).toUpperCase();
 const ymd = (d) => new Date(d).toISOString().slice(0, 10);
 const ist = (d) => new Date(d).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "short" });
 
-<<<<<<< HEAD
-// Never let a slow Google/email API call hang the applicant's request.
-=======
-<<<<<<< HEAD
-// Never let a slow Google/email API call hang the applicant's request.
-=======
-// Never let a slow Google/SMTP call hang the applicant's request.
->>>>>>> 7ece274c9f0e5e28c9967420f775c58031781b4e
->>>>>>> 083b2229aa19f1704f799988492900d1d42b999f
+
 const withTimeout = (p, ms = 15000) =>
   Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error("timed out")), ms))]);
 
