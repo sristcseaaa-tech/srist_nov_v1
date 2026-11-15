@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 083b2229aa19f1704f799988492900d1d42b999f
+
 // Sends email through Brevo's HTTPS API (https://api.brevo.com/v3/smtp/email)
 // instead of Gmail SMTP / Nodemailer. Plain HTTPS (port 443) works on hosts that
 // block outbound SMTP ports (e.g. Render free tier), and needs no extra package —
@@ -78,9 +75,7 @@ async function sendMail({ fromName, to, replyTo, subject, html }) {
     }
     throw new Error(`Brevo API ${res.status}: ${detail}`);
   }
-<<<<<<< HEAD
-=======
-=======
+
 import nodemailer from "nodemailer";
 
 // Uses a Gmail account + a 16-character Gmail "App Password" (NOT your normal
@@ -116,8 +111,6 @@ function getTransporter() {
     });
   }
   return transporter;
->>>>>>> 7ece274c9f0e5e28c9967420f775c58031781b4e
->>>>>>> 083b2229aa19f1704f799988492900d1d42b999f
 }
 
 // Generic 6-digit OTP email, used for the login OTP step, the
@@ -125,17 +118,15 @@ function getTransporter() {
 // admin account creation. `purpose` only changes the wording shown;
 // `expiresLabel` controls the human-readable expiry text (e.g. "60 seconds").
 export async function sendOtpEmail(toEmail, otp, purpose = "login", expiresLabel = "10 minutes") {
-<<<<<<< HEAD
+
   assertReady();
-=======
-<<<<<<< HEAD
+
   assertReady();
-=======
+
   if (!process.env.EMAIL_USER || !process.env.EMAIL_APP_PASSWORD) {
     throw new Error("EMAIL_USER / EMAIL_APP_PASSWORD are not set in server/.env");
   }
->>>>>>> 7ece274c9f0e5e28c9967420f775c58031781b4e
->>>>>>> 083b2229aa19f1704f799988492900d1d42b999f
+
 
   const headings = {
     login: "Your SRIST login code",
@@ -150,18 +141,15 @@ export async function sendOtpEmail(toEmail, otp, purpose = "login", expiresLabel
   const heading = headings[purpose] || headings.login;
   const intro = intros[purpose] || intros.login;
 
-<<<<<<< HEAD
+
   await sendMail({
     fromName: "SRIST",
-=======
-<<<<<<< HEAD
+
   await sendMail({
     fromName: "SRIST",
-=======
-  await getTransporter().sendMail({
+ await getTransporter().sendMail({
     from: `"SRIST" <${process.env.EMAIL_USER}>`,
->>>>>>> 7ece274c9f0e5e28c9967420f775c58031781b4e
->>>>>>> 083b2229aa19f1704f799988492900d1d42b999f
+
     to: toEmail,
     subject: heading,
     html: `
@@ -185,10 +173,7 @@ export async function sendOtpEmail(toEmail, otp, purpose = "login", expiresLabel
 const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 083b2229aa19f1704f799988492900d1d42b999f
+
 // 1) "Thanks for your interest" — goes to the email the applicant typed in.
 export async function sendApplicantConfirmation(app) {
   assertReady();
@@ -196,9 +181,7 @@ export async function sendApplicantConfirmation(app) {
     fromName: "SRIST Admissions",
     to: app.email,
     replyTo: notifyEmail(),
-<<<<<<< HEAD
-=======
-=======
+
 function emailReady() {
   return !!(process.env.EMAIL_USER && process.env.EMAIL_APP_PASSWORD);
 }
@@ -210,8 +193,7 @@ export async function sendApplicantConfirmation(app) {
     from: `"SRIST Admissions" <${process.env.EMAIL_USER}>`,
     to: app.email,
     replyTo: process.env.SRIST_NOTIFY_EMAIL || process.env.EMAIL_USER,
->>>>>>> 7ece274c9f0e5e28c9967420f775c58031781b4e
->>>>>>> 083b2229aa19f1704f799988492900d1d42b999f
+
     subject: `Thank you for your interest in SRIST — Ref #${app.ref}`,
     html: `
       <div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a;line-height:1.55">
@@ -233,25 +215,19 @@ export async function sendApplicantConfirmation(app) {
 
 // 2) Full details of the new enquiry — goes to SRIST (reply-to = the applicant).
 export async function sendApplicationToSrist(app) {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 083b2229aa19f1704f799988492900d1d42b999f
+
   assertReady();
   const row = (k, v) => `<tr><td style="padding:6px 12px 6px 0;color:#666;vertical-align:top">${k}</td><td style="padding:6px 0"><b>${v}</b></td></tr>`;
   await sendMail({
     fromName: "SRIST Website",
     to: notifyEmail(),
-<<<<<<< HEAD
-=======
-=======
+
   if (!emailReady()) throw new Error("EMAIL_USER / EMAIL_APP_PASSWORD are not set");
   const row = (k, v) => `<tr><td style="padding:6px 12px 6px 0;color:#666;vertical-align:top">${k}</td><td style="padding:6px 0"><b>${v}</b></td></tr>`;
   await getTransporter().sendMail({
     from: `"SRIST Website" <${process.env.EMAIL_USER}>`,
     to: process.env.SRIST_NOTIFY_EMAIL || process.env.EMAIL_USER,
->>>>>>> 7ece274c9f0e5e28c9967420f775c58031781b4e
->>>>>>> 083b2229aa19f1704f799988492900d1d42b999f
+
     replyTo: app.email,
     subject: `New admission enquiry #${app.ref} — ${app.name} (${app.department})`,
     html: `
