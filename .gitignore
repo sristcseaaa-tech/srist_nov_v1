@@ -4,5 +4,3 @@ credentials.json
 *.serviceaccount.json
 srist-*.json
 
-# Drive credentials (service-account key, OAuth client, refresh token) — never commit
-credentials/
